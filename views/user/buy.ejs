@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy – Ntec</title>
+  <link rel="stylesheet" href="/Bootstrap4/css/bootstrap.css" />
+  <link rel="stylesheet" href="/Bootstrap4/fontawesome/css/all.css" />
+  <link rel="stylesheet" href="/Bootstrap4/fontawesome/css/fontawesome.css" />
+  <link rel="stylesheet" href="/Bootstrap4/fontawesome/css/brands.css" />
+  <link rel="stylesheet" href="/Bootstrap4/css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/css/owl.theme.default.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/aos/aos.css" />
+
+  <script src="/Bootstrap4/js/jquery-3.6.0.min.js"></script>
+  <script src="/Bootstrap4/js/owl.carousel.min.js"></script>
+  <script src="/Bootstrap4/js/owl-carousel-option.js"></script>
+  <script src="/Bootstrap4/aos/aos.js"></script>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --brand: #4f46e5;
+      --surface: #f4f4f8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--surface);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Syne', sans-serif;
+    }
+
+    /* Welcome banner */
+    .welcome-banner {
+      background: linear-gradient(90deg, #4f46e5, #7c3aed);
+      border-radius: 20px;
+      padding: 32px;
+      color: #fff;
+    }
+
+    /* Product card */
+    .product-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
+    }
+
+    .product-img-wrap {
+      background: var(--surface);
+      padding: 32px;
+      text-align: center;
+      position: relative;
+      border-radius: 20px;
+    }
+
+    .product-img-wrap img {
+      height: 280px;
+      object-fit: contain;
+    }
+
+    .badge-new {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    /* Wishlist heart button */
+    .btn-wish {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #fff;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+      border: none;
+      color: #ccc;
+      transition: color .2s;
+    }
+
+    .btn-wish:hover {
+      color: #ef4444;
+    }
+
+    .hero-badge-danger {
+      display: inline-block;
+      background: #ffdfdf;
+      color: #ed3a3a;
+      font-size: .8rem;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 999px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #ede9fe;
+      color: #7c3aed;
+      font-size: .8rem;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 999px;
+    }
+
+    .arail {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .info-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .05);
+    }
+
+    .qty-box {
+      width: 110px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <%- include('../partials/navbar-user') %>
+
+    <div class="container-xl py-4">
+
+      <!-- Welcome Banner -->
+      <div class="welcome-banner mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3">
+        <div>
+          <h4 class="fw-bold mb-1">Checkout</h4>
+          <p class="mb-0 opacity-75">Review your item and confirm your purchase.</p>
+        </div>
+        <a href="/buyer" class="btn btn-light text-primary fw-semibold rounded-pill px-4">
+          <i class="fa fa-arrow-left me-1"></i> Back to Shop
+        </a>
+      </div>
+
+      <div class="row g-4">
+
+        <!-- PRODUCT IMAGE / CARD -->
+        <div class="col-lg-5">
+          <div class="product-card position-relative p-3">
+            <div class="product-img-wrap">
+              <button class="btn-wish"><i class="fa fa-heart"></i></button>
+              <img src="/products/<%= result.image %>" title="<%= result.product %>" alt="<%= result.product %>">
+            </div>
+          </div>
+          <div class="info-card mt-2">
+            <h6 class="fw-bold mb-2">Order Summary</h6>
+            <div class="d-flex justify-content-between mb-1">
+              <span class="text-muted">Item Price</span>
+              <span data-usd="<%= result.price %>" class="product-price fw-semibold">
+                $<%= result.price %>
+              </span>
+              </span>
+            </div>
+
+            <div class="d-flex justify-content-between mb-1">
+              <span class="text-muted">Shipping</span>
+              <span class="fw-semibold">Free</span>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <span class="fw-bold">Total</span>
+              <span class="fw-bold product-price" data-usd="<%= result.price %>" id="total"
+                style="color: #7c3aed;"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCT DETAILS + BUY FORM -->
+        <div class="col-lg-7">
+          <div class="info-card mb-4">
+            <span class="hero-badge mb-2 d-inline-block">
+              <%= result.category %>
+            </span>
+            <h3 class="fw-bold mb-2">
+              <%= result.product %>
+            </h3>
+            <h2 data-usd="<%= result.price %>" class="fw-bold mb-4 product-price" id="price" style="color: #7c3aed;">
+              $<%= result.price %>
+            </h2>
+            <span class="hero-badge mb-2 d-inline-block">
+              <%= result.stock %> Piece are available
+            </span>
+            <form action="/order_buy" method="POST">
+              <input type="hidden" name="pid" value="<%= result.id %>">
+              <input type="hidden" name="price" value="<%= result.price %>">
+              <input type="hidden" name="product" value="<%= result.product %>">
+              <input type="hidden" name="sid" value="<%= result.sid %>">
+              <input type="hidden" name="stock" id="stock" value="<%= result.stock %>">
+              <input type="hidden" name="image" value="<%= result.image %>">
+
+              <div class="mb-3">
+                <label for="qty" class="form-label fw-semibold">Quantity</label>
+                <input type="number" id="qty" name="quantity" class="form-control qty-box" value="1" min="0">
+              </div>
+              <div class="mb-3">
+                <% if(result.stock < 4 && result.stock !==0){ %>
+                  <div class="hero-badge"> <span class="fs-6 fw-bold">Only <%= result.stock %> in stock </span></div>
+                  <% } if(result.stock===0){ %>
+                    <div class="hero-badge-danger"> Out of stock</div>
+                    <% } %>
+              </div>
+              <div class="mb-3">
+                <label for="address" class="form-label fw-semibold">Shipping Address</label>
+                <textarea id="address" name="shipping_address" class="form-control" rows="3"
+                  placeholder="Enter your full address" required></textarea>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-semibold">Payment Method</label>
+                <select name="payment" class="form-select">
+                  <option value="cod">Cash on Delivery</option>
+                  <option value="card">Credit / Debit Card</option>
+                  <option value="wallet">Wallet</option>
+                </select>
+              </div>
+              <div class="text-danger">
+                <%= message !==null ? message : '' %>
+              </div>
+              <h2 class="fs-3 arail d-none" id="stock-message">Your Quantity is greater than stock</h2>
+
+              <% if(result.stock===0 ){ %>
+                <button type="submit" id="btn" disabled class="btn btn-primary btn-lg rounded-pill px-5">
+                  <i class="fa fa-bag-shopping me-2"></i> Confirm Purchase
+                </button>
+                <% } else{ %>
+                  <button type="submit" id="btn" class="btn btn-primary btn-lg rounded-pill px-5">
+                    <i class="fa fa-bag-shopping me-2"></i> Confirm Purchase
+                  </button>
+                  <% } %>
+            </form>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+    <%- include('../partials/footer') %>
+      <script>
+        window.addEventListener('load', () => {
+          updateTotal()
+          if (parseInt(qty.value) === 0) {
+            btn.setAttribute('disabled', '')
+          }
+        })
+        let stock = document.getElementById('stock')
+        let btn = document.getElementById('btn')
+        let qty = document.getElementById('qty')
+        let message = document.getElementById('stock-message')
+        let usdPrice = parseFloat(document.getElementById('price').dataset.usd)
+        let total = document.getElementById('total')
+
+        function updateTotal() {
+          
+          if (parseInt(stock.value) < parseInt(qty.value)) {
+            btn.setAttribute('disabled', '')
+            btn.setAttribute('title', `Only ${stock.value} in stock — please reduce quantity`)
+            message.classList.remove('d-none')
+          }
+          else {
+            btn.removeAttribute('disabled')
+            btn.setAttribute('title', '')
+            message.classList.add('d-none')
+
+          }
+
+          const q = parseInt(qty.value) || 1
+          const currency = localStorage.getItem('key')
+
+          if (currency === 'pak') {
+            const pkr = Math.round(q * usdPrice * rates.PKR).toLocaleString()
+            total.innerHTML = `Rs ${pkr}`
+          } else {
+            total.innerHTML = `$${(q * usdPrice).toFixed(2)}`
+          }
+        }
+        qty.addEventListener('input', updateTotal)
+      </script>
+      <script src="/Bootstrap4/js/color-modes.js"></script>
+      <script src="/Bootstrap4/js/bootstrap.bundle.js"></script>
+
+</body>
+
+</html>

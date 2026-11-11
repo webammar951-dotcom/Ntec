@@ -1,0 +1,54 @@
+<!-- ===== SELLER NAVBAR ===== -->
+
+<nav class="navbar navbar-expand-lg sticky-top shadow-sm"
+  style="background: rgba(255,255,255,0.88); backdrop-filter: blur(12px);">
+  <div class="container-xl">
+    <a class="navbar-brand fw-bold fs-4" href="/seller/index" style="letter-spacing:-1px; color:#7c3aed;">
+      Ntec. <span class="badge bg-warning text-dark ms-1 small">Seller</span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#sellerOffcanvas">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="sellerNavbar">
+      <ul class="navbar-nav ms-auto me-4 gap-1">
+        <li class="nav-item"><a class="nav-link fw-medium px-3" href="/seller">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium px-3" href="/seller_buyer">View Buyer</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium px-3" href="/seller_products">Products</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium px-3" href="/seller_profile">Profile</a></li>
+     
+
+        <form action="/logout" method="post">
+          <button type="submit" class="btn btn-light fw-medium px-3 text-danger">Logout</button>
+        </form>
+
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+
+<!-- Seller Offcanvas -->
+<div class="offcanvas offcanvas-start bg-primary text-white" tabindex="-1" id="sellerOffcanvas">
+  <div class="offcanvas-header border-bottom border-white border-opacity-25">
+    <h5 class="offcanvas-title fw-bold">Ntec. <span class="badge bg-warning text-dark">Seller</span></h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column">
+  
+    <ul class="nav flex-column gap-2 fs-5">
+      <li class="nav-item"><a class="nav-link text-white fw-medium" href="/seller"><i
+            class="bi bi-house-door me-2"></i>Home</a></li>
+      <li class="nav-item"><a class="nav-link text-white fw-medium" href="/seller_buyer"><i
+            class="bi bi-receipt me-2"></i>View Buyer</a></li>
+      <li class="nav-item"><a class="nav-link text-white fw-medium" href="/seller_products"><i
+            class="bi bi-box-seam me-2"></i>Products</a></li>
+                <li class="nav-item"><a class="nav-link text-white fw-medium" href="/seller_profile"><i                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+            class="bi bi-box-seam me-2"></i>Profile</a></li>
+      <li class="nav-item">
+        <form action="/logout" method="post">
+          <button type="submit" class="btn btn-light fw-medium px-3 text-danger">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>

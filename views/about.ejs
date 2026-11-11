@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About – Ntec</title>
+      <link rel="stylesheet" href="/Bootstrap4/css/bootstrap.css" />
+  <link rel="stylesheet" href="/Bootstrap4/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/fontawesome/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/fontawesome/css/brands.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/css/owl.theme.default.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/aos/aos.css" />
+
+  <script src="/Bootstrap4/js/jquery-3.6.0.min.js"></script>
+  <script src="/Bootstrap4/js/owl.carousel.min.js"></script>
+  <script src="/Bootstrap4/js/owl-carousel-option.js"></script>
+  <script src="/Bootstrap4/aos/aos.js"></script>
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"> -->
+  <style>
+    :root { --brand: #4f46e5; --dark: #0f0f1a; --surface: #f4f4f8; }
+    body { font-family: 'Inter', sans-serif; background: var(--surface); }
+    h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
+
+    /* Page hero */
+    .page-hero {
+      background: linear-gradient(135deg, #eef2ff 0%, #e0f2fe 100%);
+      padding: 100px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(79,70,229,.12), transparent 70%);
+      bottom: -100px; right: -80px;
+      border-radius: 50%;
+    }
+
+    /* Value cards */
+    .value-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+      transition: transform .2s;
+      height: 100%;
+    }
+    .value-card:hover { transform: translateY(-5px); }
+    .value-icon {
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+
+    /* Team cards */
+    .team-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+      text-align: center;
+      transition: transform .2s;
+    }
+    .team-card:hover { transform: translateY(-5px); }
+    .team-img {
+      width: 100%; height: 220px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+<%- include('partials/navbar-simple') %>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container-xl">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6">
+        <span class="badge bg-primary bg-opacity-10 text-primary mb-3 px-3 py-2 rounded-pill">Our Story</span>
+        <h1 class="fw-bold mb-4" style="font-size:clamp(2rem,4vw,3.4rem);">
+          We Exist to Elevate<br>Your <span style="color:var(--brand);">Sound Experience</span>
+        </h1>
+        <p class="text-muted fs-5 lh-lg mb-4">
+          Ntec was founded with one goal: bring studio-grade audio technology to everyday people. From audiophiles to casual listeners, we curate only the best.
+        </p>
+        <a href="/contact" class="btn btn-primary btn-lg rounded-pill px-5">Get in Touch</a>
+      </div>
+      <div class="col-lg-6 text-center">
+        <!-- Save as: images/about-team.png -->
+        <!-- Download from: https://unsplash.com/s/photos/tech-team -->
+        <img src="images/about.jpg" alt="Our Team"
+             class="img-fluid rounded-4 shadow"
+             style="max-height:360px; object-fit:cover; width:100%;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS ROW -->
+<section class="py-5" style="background: var(--dark);">
+  <div class="container-xl">
+    <div class="row g-3 text-center text-white">
+      <div class="col-6 col-md-3">
+        <div class="fw-bold" style="font-size:2.5rem; font-family:'Syne',sans-serif;">2019</div>
+        <div class="opacity-75 small">Founded</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="fw-bold" style="font-size:2.5rem; font-family:'Syne',sans-serif;">120K+</div>
+        <div class="opacity-75 small">Happy Customers</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="fw-bold" style="font-size:2.5rem; font-family:'Syne',sans-serif;">50+</div>
+        <div class="opacity-75 small">Brand Partners</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="fw-bold" style="font-size:2.5rem; font-family:'Syne',sans-serif;">8M+</div>
+        <div class="opacity-75 small">Products Sold</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR VALUES -->
+<section class="py-5">
+  <div class="container-xl">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">What We Stand For</h2>
+      <p class="text-muted">Our core values drive everything we do</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="value-card">
+          <div class="value-icon" style="background:#eef2ff; color:var(--brand);">
+            <i class="bi bi-award"></i>
+          </div>
+          <h5 class="fw-semibold mb-2">Quality First</h5>
+          <p class="text-muted mb-0">We only list products that pass our strict quality standards. No compromises, ever.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="value-card">
+          <div class="value-icon" style="background:#f0fdf4; color:#10b981;">
+            <i class="bi bi-people"></i>
+          </div>
+          <h5 class="fw-semibold mb-2">Customer-Centric</h5>
+          <p class="text-muted mb-0">Your satisfaction is our success. 24/7 support and hassle-free returns guaranteed.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="value-card">
+          <div class="value-icon" style="background:#fff7ed; color:#f59e0b;">
+            <i class="bi bi-lightning-charge"></i>
+          </div>
+          <h5 class="fw-semibold mb-2">Innovation</h5>
+          <p class="text-muted mb-0">Always ahead of the curve — we source tomorrow's tech so you can experience it today.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM SECTION -->
+<section class="py-5" style="background: #fff;">
+  <div class="container-xl">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Meet the Team</h2>
+      <p class="text-muted">The people behind Ntec</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <!-- Team Member 1 -->
+      <!-- Avatar images: https://ui-avatars.com -->
+      <div class="col-6 col-md-3">
+        <div class="team-card">
+          <img src="https://ui-avatars.com/api/?name=Ali+Raza&background=4f46e5&color=fff&size=220" alt="Ali Raza" class="team-img">
+          <div class="p-3">
+            <h6 class="fw-semibold mb-0">Ali Raza</h6>
+            <small class="text-muted">CEO &amp; Founder</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="team-card">
+          <img src="https://ui-avatars.com/api/?name=Fatima+Sheikh&background=0ea5e9&color=fff&size=220" alt="Fatima Sheikh" class="team-img">
+          <div class="p-3">
+            <h6 class="fw-semibold mb-0">Fatima Sheikh</h6>
+            <small class="text-muted">Head of Product</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="team-card">
+          <img src="https://ui-avatars.com/api/?name=Hassan+Mirza&background=7c3aed&color=fff&size=220" alt="Hassan Mirza" class="team-img">
+          <div class="p-3">
+            <h6 class="fw-semibold mb-0">Hassan Mirza</h6>
+            <small class="text-muted">Lead Developer</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="team-card">
+          <img src="https://ui-avatars.com/api/?name=Zara+Iqbal&background=f59e0b&color=fff&size=220" alt="Zara Iqbal" class="team-img">
+          <div class="p-3">
+            <h6 class="fw-semibold mb-0">Zara Iqbal</h6>
+            <small class="text-muted">Marketing Lead</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
+<script src="/Bootstrap4/js/color-modes.js"></script>
+<script src="/Bootstrap4/js/bootstrap.bundle.js"></script>
+<script>AOS.init({ duration: 700, once: true });</script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<!--  -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ntec – Premium Electronics Store</title>
+  <link rel="stylesheet" href="/Bootstrap4/css/bootstrap.css" />
+  <link rel="stylesheet" href="/Bootstrap4/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/fontawesome/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/fontawesome/css/brands.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/css/owl.theme.default.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/aos/aos.css" />
+
+  <script src="/Bootstrap4/js/jquery-3.6.0.min.js"></script>
+  <script src="/Bootstrap4/js/owl.carousel.min.js"></script>
+  <script src="/Bootstrap4/js/owl-carousel-option.js"></script>
+  <script src="/Bootstrap4/aos/aos.js"></script>
+  <!-- Bootstrap 5 CSS -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- Bootstrap Icons -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"> -->
+  <!-- Google Fonts: Syne (display) + Inter (body) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --brand: #4f46e5;
+      --brand-sky: #0ea5e9;
+      --accent: #f59e0b;
+      --dark: #0f0f1a;
+      --surface: #f4f4f8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--surface);
+      color: #1e1e2e;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: 'Syne', sans-serif;
+    }
+
+    /* HERO */
+    .hero-section {
+      background: linear-gradient(135deg, #eef2ff 0%, #e0f2fe 60%, #f0fdf4 100%);
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      z-index: 100;
+    }
+
+    .hero-section::before {
+      content: '11';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgb(107 102 183 / 33%) 0%, transparent 70%);
+      top: -200px;
+      right: 800px;
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .hero-badge {
+      background: rgba(79, 70, 229, .1);
+      color: var(--brand);
+      border-radius: 50px;
+      padding: 4px 14px;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .hero-img {
+      filter: drop-shadow(0 30px 60px rgba(79, 70, 229, .25));
+      animation: float 4s ease-in-out infinite;
+      max-width: 100%;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-14px);
+      }
+    }
+
+    /* Side cards */
+    .side-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
+      transition: transform .2s;
+    }
+
+    .side-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .color-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-block;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px #ddd;
+    }
+
+    /* Product card */
+    .product-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, .06);
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(79, 70, 229, .15);
+    }
+
+    .product-card .badge-new {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 1;
+    }
+
+    .product-img-wrap {
+      background: var(--surface);
+      padding: 24px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .product-img-wrap img {
+      height: 160px;
+      object-fit: contain;
+      transition: transform .3s;
+    }
+
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.06);
+    }
+
+    /* Stats strip */
+    .stat-strip {
+      background: linear-gradient(90deg, var(--brand) 0%, #7c3aed 100%);
+    }
+
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      font-family: 'Syne', sans-serif;
+    }
+
+    /* Category pill */
+    .cat-pill {
+      background: #fff;
+      border: 2px solid #e5e7eb;
+      border-radius: 50px;
+      padding: 9px 22px;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .cat-pill:hover {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+    }
+
+    /* Testimonial card */
+    .testi-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
+    }
+
+    @media (max-width: 768px) {
+      .headphone-img {
+        display: block;
+        width: 80%;
+        margin: 20px auto;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <%- include('partials/navbar-simple') %>
+
+    <!-- HERO SECTION — Mirrors the mockup layout: headline left, product center, info cards right -->
+    <section class="hero-section py-5">
+      <div class="container-xl">
+        <div class="row align-items-center ">
+
+          <!-- LEFT: Headline + CTA -->
+          <div class="col-lg-4 col-12">
+            <span class="hero-badge mb-3 d-inline-block">🎧 New &amp; Classic</span>
+            <h1 class="hero-title mb-3">
+              Sequoia<br>Inspiring<br><span style="color:var(--brand);">Musico.</span>
+            </h1>
+            <p class="text-muted mb-4" style="max-width:320px; line-height:1.7;">
+              Redefine your sound experience with studio-grade audio. Feel every beat, every note.
+            </p>
+            <!-- "01 Clear Sounds" micro-label — matches the numbered label in the mockup -->
+            <div class="d-flex align-items-start gap-3 mb-4">
+              <span class="fw-bold fs-3"
+                style="color:var(--brand); font-family:'Syne',sans-serif; line-height:1;">01</span>
+              <div>
+                <p class="mb-0 fw-semibold">Clear Sounds</p>
+                <p class="text-muted small mb-0">Meeting your dream music every time with Sequoia SOUND</p>
+              </div>
+            </div>
+            <a href="/signup" class="btn btn-primary btn-lg rounded-pill px-5">
+              View All Products <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+            <!-- Social follow row — matches mockup -->
+            <div class="d-flex align-items-center gap-3 mt-4">
+              <span class="small text-muted">Follow us on</span>
+              <a href="#" class="text-muted"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" class="text-muted"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="text-muted"><i class="fab fa-facebook"></i></a>
+              <a href="#" class="text-muted"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+
+
+          <div class="col-lg-4 col-md-6 text-center ">
+            <img src="images/headphone.png" id="img-head" alt="Premium Headphone" class="hero-img headphone-img">
+          </div>
+          <div class=" col-lg-4 col-md-6">
+            <div class="d-flex flex-column gap-1">
+
+              <div class="side-card">
+                <p class="fw-semibold mb-2 small">Popular Colors</p>
+                <div class="d-flex gap-2">
+                  <span class="color-dot" id="red" style="background:#ff6b6b; cursor: pointer;"></span>
+                  <span class="color-dot" id="yellow" style="background:#ffd93d; cursor: pointer;"></span>
+                  <span class="color-dot" id="blue" style="background:#4f46e5; cursor: pointer;"></span>
+                  <span class="color-dot" id="sky" style="background:#6ee7b7; cursor: pointer;"></span>
+                  <span class="color-dot" id="black" style="background:#0f0f1a; cursor: pointer;"></span>
+                </div>
+              </div>
+
+              <div class="side-card d-flex align-items-center gap-3">
+                <img src="images/earbuds.png" alt="X-Buds" height="64">
+                <div>
+                  <p class="fw-semibold mb-0 small">New Gen</p>
+                  <p class="text-muted mb-0 small">X-Bud</p>
+                </div>
+                <a href="/signup" class="btn btn-sm btn-outline-primary ms-auto rounded-circle"><i
+                    class="fa fa-arrow-right"></i></a>
+              </div>
+
+              <div class="side-card d-flex align-items-center gap-3">
+                <img src="images/verheadset.png" alt="VR Headset" height="64">
+                <div>
+                  <p class="fw-semibold mb-0 small">Light Grey Surface</p>
+                  <p class="text-muted mb-0 small">Headphone Case</p>
+                </div>
+                <a href="/signup"
+                  class="btn btn-sm btn-outline-primary ms-auto rounded-circle d-flex align-items-center justify-content-center"
+                  style="width:34px; height:34px;">
+                  <i class="fa fa-arrow-right"></i>
+                </a>
+
+              </div>
+            </div>
+
+          </div>
+
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS STRIP — "8m+" mirrors the mockup -->
+    <section class="stat-strip text-white py-4">
+      <div class="container-xl">
+        <div class="row g-3 text-center">
+          <div class="col-6 col-md-3">
+            <div class="stat-num">8M+</div>
+            <div class="small opacity-75">All-season products</div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-num">120K</div>
+            <div class="small opacity-75">Happy Customers</div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-num">4.9★</div>
+            <div class="small opacity-75">Average Rating</div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-num">50+</div>
+            <div class="small opacity-75">Brands Available</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORY FILTER -->
+    <section class="py-5" style="background: var(--dark);">
+      <div class="container-xl">
+        <div class="row align-items-center g-4">
+          <div class="col-md-6">
+            <span class="badge bg-primary mb-3">🎵 Popular</span>
+            <h2 class="text-white fw-bold" style="font-family:'Syne',sans-serif; font-size:2.2rem;">
+              Listening Has<br>Been Released
+            </h2>
+            <p class="text-white opacity-75 mb-4">Experience the newest generation of wireless audio. No wires, no
+              limits — just pure sound.</p>
+            <a href="/signup" class="btn btn-primary btn-lg rounded-pill px-5">Shop Now</a>
+          </div>
+          <div class="col-md-6 text-center">
+
+            <img src="images/banner-lifestyle.jpg" alt="Lifestyle" class="img-fluid rounded-4"
+              style="max-height:300px; object-fit:cover; width:100%;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="py-5">
+      <div class="container-xl">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold">What Our Customers Say</h2>
+          <p class="text-muted">Real reviews from real buyers</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="testi-card">
+              <div class="d-flex gap-1 mb-3 text-warning small">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                  class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p class="text-muted">"The Sequoia Pro X changed my whole music experience. Best purchase I've made this
+                year!"</p>
+              <div class="d-flex align-items-center gap-2 mt-3">
+                <img src="https://ui-avatars.com/api/?name=Ahmed+Khan&background=4f46e5&color=fff&size=40"
+                  class="rounded-circle" width="40" height="40" alt="Ahmed">
+                <div>
+                  <p class="mb-0 fw-semibold small">Ahmed Khan</p>
+                  <p class="mb-0 text-muted" style="font-size:.75rem;">Karachi</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="testi-card">
+              <div class="d-flex gap-1 mb-3 text-warning small">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                  class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+              </div>
+              <p class="text-muted">"Fast delivery, amazing packaging, and the earbuds sound incredible. Highly
+                recommend!"</p>
+              <div class="d-flex align-items-center gap-2 mt-3">
+                <img src="https://ui-avatars.com/api/?name=Sara+Malik&background=0ea5e9&color=fff&size=40"
+                  class="rounded-circle" width="40" height="40" alt="Sara">
+                <div>
+                  <p class="mb-0 fw-semibold small">Sara Malik</p>
+                  <p class="mb-0 text-muted" style="font-size:.75rem;">Lahore</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="testi-card">
+              <div class="d-flex gap-1 mb-3 text-warning small">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                  class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p class="text-muted">"The VR headset is mind-blowing. Customer support was super helpful too!"</p>
+              <div class="d-flex align-items-center gap-2 mt-3">
+                <img src="https://ui-avatars.com/api/?name=Usman+Ali&background=7c3aed&color=fff&size=40"
+                  class="rounded-circle" width="40" height="40" alt="Usman">
+                <div>
+                  <p class="mb-0 fw-semibold small">Usman Ali</p>
+                  <p class="mb-0 text-muted" style="font-size:.75rem;">Islamabad</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <%- include('partials/footer') %>
+      <script>
+        let yellow = document.getElementById('yellow')
+        let red = document.getElementById('red')
+        let blue = document.getElementById('blue')
+        let sky = document.getElementById('sky')
+        let black = document.getElementById('black')
+        let c = document.querySelectorAll('.btn')
+        let imghead = document.getElementById('img-head')
+        yellow.addEventListener('click', () => {
+         imghead.src = "images/headyellow.png"
+        })
+        red.addEventListener('click', () => {
+            imghead.src = "images/headred.png"
+          
+        })
+        blue.addEventListener('click', () => {
+          imghead.src = "images/headphone.png"
+       
+        })
+        sky.addEventListener('click', () => {
+          imghead.src = "images/headsky.png"
+          
+        })
+        black.addEventListener('click', () => {
+          imghead.src = "images/headblack.png"
+        
+        })
+      </script>
+      <script src="/Bootstrap4/js/color-modes.js"></script>
+      <script src="/Bootstrap4/js/bootstrap.bundle.js"></script>
+      <script>AOS.init({ duration: 700, once: true });</script>
+      <!-- Bootstrap 5 Bundle JS (Popper included — required for offcanvas & dropdowns) -->
+      <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+</body>
+
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders – Ntec</title>
+  <link rel="stylesheet" href="/Bootstrap4/css/bootstrap.css" />
+  <link rel="stylesheet" href="/Bootstrap4/fontawesome/css/all.css" />
+  <link rel="stylesheet" href="/Bootstrap4/fontawesome/css/fontawesome.css" />
+  <link rel="stylesheet" href="/Bootstrap4/fontawesome/css/brands.css" />
+  <link rel="stylesheet" href="/Bootstrap4/css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/css/owl.theme.default.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/aos/aos.css" />
+
+  <script src="/Bootstrap4/js/jquery-3.6.0.min.js"></script>
+  <script src="/Bootstrap4/js/owl.carousel.min.js"></script>
+  <script src="/Bootstrap4/js/owl-carousel-option.js"></script>
+  <script src="/Bootstrap4/aos/aos.js"></script>
+  <style>
+    :root {
+      --brand: #4f46e5;
+      --surface: #f4f4f8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--surface);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Syne', sans-serif;
+    }
+
+    .page-header {
+      background: linear-gradient(90deg, #4f46e5, #7c3aed);
+      color: #fff;
+      padding: 40px 0;
+    }
+
+    /* Summary stat cards */
+    .stat-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .06);
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       RESPONSIVE TABLE — wraps at any size down to 320px
+       Using Bootstrap's overflow-x-auto wrapper ensures we never
+       need horizontal scrollbar beyond the table itself.
+    ============================================================ */
+    .orders-table-wrap {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
+      overflow: hidden;
+    }
+
+    /* Make the table scroll on small screens — works down to 320px */
+    .table-responsive {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .orders-table thead {
+      background: #f8f9ff;
+    }
+
+    .orders-table th {
+      font-weight: 600;
+      font-size: .85rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: #6b7280;
+      border-bottom: 2px solid #e5e7eb;
+      white-space: nowrap;
+      padding: 14px 16px;
+    }
+
+    .orders-table td {
+      padding: 14px 16px;
+      vertical-align: middle;
+      border-bottom: 1px solid #f3f4f6;
+      white-space: nowrap;
+    }
+
+    .orders-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Status badge pills */
+    .status-badge {
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: .78rem;
+      font-weight: 600;
+    }
+
+    .color-success {
+      background: rgba(208, 239, 160, 0.8);
+    }
+  </style>
+</head>
+
+<body>
+
+  <%- include('../partials/navbar-user') %>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+      <div class="container-xl">
+        <h4 class="fw-bold mb-1">My Orders</h4>
+        <p class="mb-0 opacity-75">Track and manage all your purchases</p>
+      </div>
+    </section>
+
+    <div class="container-xl py-4">
+
+      <!-- STAT CARDS ROW -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="stat-card d-flex align-items-center gap-3 p-2 p-lg-3">
+            <div class="stat-icon" style="background:#eef2ff; color:var(--brand);">
+              <i class="fa fa-list"></i>
+            </div>
+            <div>
+
+              <div class="fw-bold fs-5">
+                <%= result2[0].total %>
+              </div>
+              <div class="small text-muted">Total Orders</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card d-flex align-items-center gap-3 p-2 p-lg-3">
+            <div class="stat-icon flex justify-content-center align-items-center"
+              style="background:#f0fdf4; color:#10b981;">
+              <i class="fa fa-circle h2">
+              </i>
+              <i class="fa fa-check text-white position-absolute "></i>
+            </div>
+            <div>
+
+              <div class="fw-bold fs-5">
+                <% function getCount(status) { const found=counts.find(c=> c.status === status);
+                  return found ? found.total : 0;
+                  } %>
+                  <%= getCount('delivered') %>
+              </div>
+              <div class="small text-muted">Delivered</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card d-flex align-items-center gap-3 p-2 p-lg-3">
+            <div class="stat-icon" style="background:#fff7ed; color:#f59e0b;">
+              <i class="fa fa-truck"></i>
+            </div>
+            <div>
+              <div class="fw-bold fs-5">
+                <%= getCount('order confirm') %>
+              </div>
+              <div class="small text-muted">Order Confirm</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card d-flex align-items-center gap-3  p-2 p-lg-3">
+            <div class="stat-icon" style="background:#fef2f2; color:#ef4444;">
+              <i class="fa fa-circle h2"></i>
+              <i class="fa fa-close text-white position-absolute"></i>
+            </div>
+            <div>
+              <div class="fw-bold fs-5">
+                <%= getCount('cancel') %>
+              </div>
+              <div class="small text-muted">Cancelled</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="conainer">
+        <div id="id"></div>
+        <div class="d-flex justify-content-around align-items-center">
+          <h2 style="color: #7c3aed;">Your Orders</h2>
+          <form action="" method="post">
+            <div class="input-group mb-3">
+              <input type="text" placeholder="Search orders..." class="form-control">
+              <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- FILTER TABS -->
+
+      <ul class="nav nav-pills gap-2 mb-4 flex-nowrap overflow-auto pb-1" id="statusBar" style="scrollbar-width:none;">
+        <li class="nav-item"><a class="nav-link status active rounded-pill" href="#id">All</a></li>
+        <li class="nav-item"><a class="nav-link status rounded-pill" href="#id">Pending</a></li>
+        <li class="nav-item"><a class="nav-link status rounded-pill" href="#id">Processing</a></li>
+        <li class="nav-item"><a class="nav-link status rounded-pill" href="#id">Shipped</a></li>
+        <li class="nav-item"><a class="nav-link status rounded-pill" href="#id">Delivered</a></li>
+        <li class="nav-item"><a class="nav-link status rounded-pill" href="#id">Cancelled</a></li>
+      </ul>
+
+
+      <div class="orders-table-wrap">
+        <div class="table-responsive">
+          <% if(result.length===0){ %>
+            <div class="text-danger text-center mt-4">
+              <i class="fa fa-frown h2"></i>
+              <div class=" justify-content-center align-items-center d-flex flex-column  fw-bold mt-5 d-none">
+                <img src="../images/order.png" height="160" width="160" class="img-fluid" alt="">
+              </div>
+            </div>
+            <% } else { %>
+              <table class="table orders-table mb-0">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Action</th>
+
+                  </tr>
+                </thead>
+                <tbody id="resultBody">
+                  <tr class="text-center">
+                    <td id="container" class="d-none" colspan="7"> </td>
+                  </tr>
+                  <% for(let i=0; i < result.length; i++ ){ %>
+                    <% if(result[i].status==='delivered' ){ %>
+                      <tr class="color-success tr" data-status="<%= result[i].status %>">
+                        <% } else{ %>
+                      <tr class="tr" data-status="<%= result[i].status %>">
+                        <% } %>
+                          <td>
+                            <%= result[i].id %>
+                          </td>
+                          <td>
+                            <img src="/products/<%= result[i].image %>" width="50" height="50" class="object-fit-cover"
+                              alt="">
+                            <%= result[i].product %>
+                          </td>
+                          <td data-usd="<%= result[i].price %>"
+                            class="product-price <%= result[i].status==='delivered' && 'color-success' %>">
+                            $<%= result[i].price %>
+                          </td>
+                          <td>
+                            <%= result[i].qty %>
+                          </td>
+                          <td data-usd="<%= result[i].price * result[i].qty %>"
+                            class="product-price <%= result[i].status==='delivered' && 'color-success' %>">
+                            $<%= result[i].amount %>
+                          </td>
+                          <td>
+                            <%= result[i].status %>
+                          </td>
+                          <% if(result[i].status==='order confirm' || result[i].status==='delivered' ){ %>
+                            <td><button disabled class="btn btn-danger disabled">Cancel</button></td>
+                            <% } else if(result[i].status==='cancel' ){ %>
+                              <td class=" text-center"><i class="fa fa-close fs-2 text-danger"></i></td>
+                              <% } else{ %>
+                                <td><button data-bs-toggle="modal" data-bs-target="#cancelorder<%= result[i].id %>"
+                                    class="btn btn-danger">Cancel</button></td>
+                                <% } %>
+                                  <div class="modal fade" id="cancelorder<%= result[i].id %>" tabindex="-1">
+                                    <div class="modal-dialog modal-sm">
+                                      <div class="modal-content rounded-4 border-0 shadow">
+                                        <div class="modal-header border-0">
+                                          <h5 class="modal-title fw-bold">Cancel Order?</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body text-muted small">
+                                          Are you sure you want to cancel this order? This action cannot be undone and
+                                          the customer will be notified.
+                                        </div>
+                                        <div class="modal-footer border-0">
+                                          <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm"
+                                            data-bs-dismiss="modal">No, Keep
+                                            It</button>
+                                          <form action="/cancel/<%= result[i].id %>" method="get">
+                                            <button type="submit" class="btn btn-danger rounded-pill btn-sm"
+                                              data-bs-dismiss="modal">Yes,
+                                              Cancel</button>
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                      </tr>
+                      <% } %>
+                </tbody>
+              </table>
+              <% } %>
+        </div><!-- /table-responsive -->
+      </div><!-- /orders-table-wrap -->
+
+      <!-- Pagination -->
+    
+        <nav class="mt-4 d-flex justify-content-center ">
+          <ul class="pagination flex-wrap">
+            <li class="page-item <%= page === 1 ? 'disabled' : '' %>"><a class="page-link rounded-start-pill"
+                href="?page=<%= page - 1 %>">«</a></li>
+           
+            <% for(let i=1; i <=totalPages ; i++) { %>
+              <li class="page-item <%= page === i ? 'active' : '' %>"><a class="page-link" href="?page=<%= i %>">
+                  <%= i %>
+                </a></li>
+              <% } %>
+             
+                <li class="page-item <%= page === totalPages ? 'disabled' : '' %>"><a class="page-link rounded-end-pill"
+                    href="?page=<%= page + 1 %> ">»</a></li>
+          </ul>
+        </nav>
+
+    </div>
+
+    <script>
+      let status = document.querySelectorAll('#statusBar .status')
+      let statusBar = document.querySelectorAll('#resultBody .tr')
+      let container = document.getElementById('container')
+      status.forEach(el => {
+        let term = el.textContent.toLowerCase()
+        el.addEventListener('click', () => {
+
+          document.querySelectorAll('#statusBar .status').forEach(t => t.classList.remove('active'))
+          el.classList.add('active')
+          let match = 0
+          statusBar.forEach(e => {
+            let state = e.dataset.status
+            if (state === term || term === 'all') {
+              e.style.display = ''
+              match++
+            }
+            else {
+              e.style.display = 'none'
+
+            }
+          })
+          if (match > 0) {
+            container.classList.add('d-none')
+          }
+          else {
+            container.classList.remove('d-none')
+            container.innerHTML = `No orders found in ${term} status`
+          }
+        })
+      })
+    </script>
+    <%- include('../partials/footer') %>
+      <script src="/Bootstrap4/js/color-modes.js"></script>
+      <script src="/Bootstrap4/js/bootstrap.bundle.js"></script>
+
+      <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+</body>
+
+</html>

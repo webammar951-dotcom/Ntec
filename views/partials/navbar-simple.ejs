@@ -1,0 +1,153 @@
+<!-- ===== SIMPLE NAVBAR (Public Pages) ===== -->
+<style>
+  .dropdown-divider {
+    height: 70px;
+    overflow-y: auto;
+  }
+
+  .product-price {
+    visibility: hidden;
+    font-family: arial;
+  }
+.offcanvas{
+  height: 100vh;
+  width: 100vw;
+}
+  /*  */
+</style>
+<nav class="navbar navbar-expand-lg sticky-top shadow-sm"
+  style="background: rgba(255,255,255,0.88); backdrop-filter: blur(12px);">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2 col-6">
+        <a class="navbar-brand fw-bold fs-4" href="/" style="letter-spacing:-1px; color:#4f46e5;">
+          <img src="images/logo.png" alt="Ntec" height="32"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+          <span style="display:none;">N<span style="color:#0ea5e9;">tec.</span></span>
+        </a>
+      </div>
+      <div class="col-md-4 col-6 ">
+        <div class="d-flex justify-content-end align-items-center">
+          
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#simpleOffcanvas">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="dropdown ">
+        <button data-bs-toggle="dropdown" class="btn btn-outline-primary ms-3 rounded-pill dropdown-toggle">
+          <i class="fa fa-dollar"></i>
+        </button>
+        <ul class="dropdown-menu" style="margin-left: -240px;">
+          <li class="dropdown-item" id="btn-usd">
+            <img src="https://flagcdn.com/w40/us.png" alt="flag"> Dollar $
+          </li>
+          <li class="dropdown-item" id="check">
+
+              </li>
+          <li class="dropdown-item"id="btn-pkr">
+            <img src="https://flagcdn.com/w40/pk.png" alt="flag"> PKR Rs
+          </li>
+        </ul>
+      </div>
+        </div>
+      </div>
+ 
+        <div class="offcanvas offcanvas-start"  id="simpleOffcanvas">
+          <div class="offcanvas-header">
+            
+           <button type="button" class="btn-close " data-bs-dismiss="offcanvas"></button>
+          </div>
+          <div class="offcanvas-body">
+
+            <ul class="navbar-nav flex-grow-1 gap-2 fs-6">
+              <li class="nav-item"><a class="nav-link fw-medium" href="/">Home</a></li>
+              <li class="nav-item"><a class="nav-link fw-medium" href="/about">About</a></li>
+              <li class="nav-item"><a class="nav-link fw-medium" href="/products">Products</a></li>
+              <li class="nav-item"><a class="nav-link fw-medium" href="/contact">Contact</a></li>
+                    <li class="nav-item "><a class="btn btn-primary text-white fw-bold rounded-pill" href="/signup">Sign
+                  Up</a></li>
+              <li class="nav-item"><a class="btn btn-light text-primary fw-bold rounded-pill" href="/login">Login</a></li>
+              
+            </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<script>
+  let rates = {}
+
+  async function get() {
+    try {
+      const res = await fetch('https://v6.exchangerate-api.com/v6/a4c19dd4e3d5cc6bf30b048b/latest/USD')
+      const data = await res.json();
+      rates = data.conversion_rates;
+    }
+    catch (e) {
+ localStorage.setItem('key','usd')
+      document.querySelectorAll('.product-price').forEach(el => {
+        const usd = el.dataset.usd
+        el.textContent = `$${usd}`
+      })
+      const btn_pkr = document.getElementById('btn-pkr')
+      btn_pkr.style.display = "none"
+     check.innerHTML=`<p class=" fs-6">Please check your internet connection</p>`
+
+    }
+
+
+
+    if (localStorage.getItem('key') === 'pak') {
+      document.querySelectorAll('.product-price').forEach(el => {
+        const usd = el.dataset.usd
+        const pkr = (usd * rates.PKR).toFixed(0)
+
+        const P = Number(pkr).toLocaleString()
+        el.textContent = `Rs ${P}`
+      })
+    }
+    if (localStorage.getItem('key') === 'usd') {
+      document.querySelectorAll('.product-price').forEach(el => {
+        const usd = el.dataset.usd
+        el.textContent = `$${usd}`
+      })
+    }
+    document.querySelectorAll('.product-price').forEach(el => {
+      el.style.visibility = 'visible'
+    })
+   
+
+  }
+
+  // USD button clicked
+  document.getElementById('btn-usd').addEventListener('click', () => {
+    document.querySelectorAll('.product-price').forEach(el => {
+      const usd = el.dataset.usd
+      el.textContent = `$${usd}`
+    })
+    localStorage.setItem('key', 'usd')
+    location.reload()
+  })
+
+  // PKR button clicked
+  document.getElementById('btn-pkr').addEventListener('click', () => {
+    document.querySelectorAll('.product-price').forEach(el => {
+      const usd = el.dataset.usd
+      const pkr = (usd * rates.PKR).toFixed(0)
+      const P = Number(pkr).toLocaleString()
+      el.textContent = `Rs ${P}`
+
+    })
+    localStorage.setItem('key', 'pak')
+    location.reload()
+  })
+
+
+  get()
+
+
+
+</script>

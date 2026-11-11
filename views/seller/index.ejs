@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller Dashboard – Ntec</title>
+  <link rel="stylesheet" href="/Bootstrap4/css/bootstrap.css" />
+  <link rel="stylesheet" href="/Bootstrap4/fontawesome/css/all.css" />
+  <link rel="stylesheet" href="/Bootstrap4/fontawesome/css/fontawesome.css" />
+  <link rel="stylesheet" href="/Bootstrap4/fontawesome/css/brands.css" />
+  <link rel="stylesheet" href="/Bootstrap4/css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/css/owl.theme.default.min.css" />
+  <link rel="stylesheet" href="/Bootstrap4/aos/aos.css" />
+
+  <script src="/Bootstrap4/js/jquery-3.6.0.min.js"></script>
+  <script src="/Bootstrap4/js/owl.carousel.min.js"></script>
+  <script src="/Bootstrap4/js/owl-carousel-option.js"></script>
+  <script src="/Bootstrap4/aos/aos.js"></script>
+  <style>
+    :root {
+      --brand: #7c3aed;
+      --brand2: #4f46e5;
+      --surface: #f4f4f8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--surface);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: 'Syne', sans-serif;
+    }
+
+    /* Welcome banner */
+    .dash-banner {
+      background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+      border-radius: 20px;
+      color: #fff;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dash-banner::after {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, .06);
+      border-radius: 50%;
+      right: -80px;
+      bottom: -80px;
+    }
+
+    /* Stat cards */
+    .stat-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
+      transition: transform .2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .stat-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .trend-up {
+      color: #10b981;
+      font-size: .8rem;
+      font-weight: 600;
+    }
+
+    .trend-down {
+      color: #ef4444;
+      font-size: .8rem;
+      font-weight: 600;
+    }
+
+    /* Section card */
+    .section-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
+    }
+
+    /* Recent orders table */
+    .dash-table th {
+      font-size: .82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: #6b7280;
+      border-bottom: 2px solid #f3f4f6;
+      padding: 12px 14px;
+      white-space: nowrap;
+    }
+
+    .dash-table td {
+      padding: 12px 14px;
+      vertical-align: middle;
+      border-bottom: 1px solid #f9fafb;
+      white-space: nowrap;
+    }
+
+    .dash-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Status badge */
+    .status-badge {
+      padding: 1px 10px;
+      border-radius: 50px;
+      font-size: .76rem;
+      font-weight: 600;
+    }
+
+    /* Product mini card */
+    .product-mini {
+      border: 2px solid #f3f4f6;
+      border-radius: 14px;
+      padding: 12px;
+      transition: border-color .2s;
+    }
+
+    .product-mini:hover {
+      border-color: var(--brand);
+    }
+
+    .card-2 {
+      width: 100px;
+      font-size: 48px;
+      height: 100px;
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <%- include('../partials/navbar-seller') %>
+
+    <div class="container-xl py-4">
+
+      <!-- WELCOME BANNER -->
+      <div class="dash-banner mb-4">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+
+            <h4 class="fw-bold mb-1">Welcome back, <%= result.username %> Store! 👋</h4>
+            <p class="mb-3 opacity-75">Here's what's happening with your store today.</p>
+            <div class="d-flex gap-2 flex-wrap">
+              <a href="/seller_products" class="btn btn-light text-primary fw-semibold rounded-pill px-4">
+                <i class="bi bi-plus-circle me-1"></i> Add Product
+              </a>
+              <a href="/seller_orders" class="btn btn-outline-light rounded-pill px-4">
+                <i class="bi bi-receipt me-1"></i> View Orders
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4   d-md-block">
+            <!-- Store avatar -->
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                  <div
+                    class="bg-white text-capitalize card-2  text-black  rounded-circle text-center justify-content-center align-content-center">
+                    <%= result.username[0] %>
+                  </div>
+                </div>
+                <div class="col-md-4"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- STAT CARDS -->
+      <div class="row g-3 mb-4">
+
+        <div class="col-6 col-md-3">
+          <div class="stat-card d-flex align-items-center gap-3 p-2 p-lg-3">
+            <div class="stat-icon" style="background:#f3e8ff; color:#7c3aed;">
+              <i class="fa fa-dollar"></i>
+            </div>
+            <div>
+
+              <div class="fw-bold fs-5 mb-0">$<%= result4[0].total %>
+              </div>
+              <div class="small text-muted"><p >Total Revenue</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <div class="stat-card d-flex align-items-center gap-3 p-2 p-lg-3">
+            <div class="stat-icon" style="background:#eef2ff; color:#4f46e5;">
+              <i class="fa fa-receipt"></i>
+            </div>
+            <div>
+              <div class="fw-bold fs-5 mb-0">
+                <%= result2[0].total %>
+              </div>
+              <div class="small text-muted"><p>Total Orders</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <div class="stat-card d-flex align-items-center gap-3 p-2 p-lg-3">
+            <div class="stat-icon" style="background:#f0fdf4; color:#10b981;">
+              <i class="fa fa-box"></i>
+            </div>
+            <div>
+              <div class="fw-bold fs-5 mb-0">
+                <%= result3[0].total %>
+              </div>
+              <div class="small text-muted"><p>Products</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <div class="stat-card d-flex align-items-center gap-3 p-2 p-lg-3">
+            <div class="stat-icon" style="background:#fef9c3; color:#854d0e;">
+              <i class="fa fa-exclamation-circle"></i>
+            </div>
+            <div>
+              <% function get(status) { const found=counts.find(c=> c.status === status);
+                return found ? found.total : 0;
+                } %>
+                %>
+                <div class="fw-bold fs-5 mb-0">
+                  <%= get('pending') %>
+                </div>
+                <div class="small text-muted"><p>Pending Orders</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /stat row -->
+
+      <div class="row g-4">
+
+        <!-- RECENT ORDERS TABLE -->
+        <div class="col-lg-8">
+          <div class="section-card">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h6 class="fw-bold mb-0">Recent Orders</h6>
+              <a href="/seller_orders" class="btn btn-sm btn-outline-primary rounded-pill">View All</a>
+            </div>
+            <!-- Responsive table — scrolls horizontally on small screens -->
+            <div class="table-responsive">
+              <table class="table dash-table mb-0">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Product</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% if(recent.length===0) { %>
+                    <td colspan="5" class="text-center " style="color:var(--brand2); font-weight:600;">No Order yet.
+                    </td>
+                    <% } else { %>
+                      <% for(let i=0 ; i < recent.length ; i++){ %>
+                        <tr>
+                          <td>
+                            <%= recent[i].id %>
+                          </td>
+                          <td>
+                            <%= recent[i].username %>
+                          </td>
+                          <td>
+                            <%= recent[i].product %>
+                          </td>
+                          <td>
+                            $<%= recent[i].amount %>
+                          </td>
+
+                          <td class="status-badge btn-sm btn mt-1 text-center text-capitalize"
+                            style="background:#dbeafe;color:#1e40af;">
+                            <%= recent[i].status %>
+                          </td>
+                        </tr>
+                        <% } %>
+                          <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Top Products + Alerts -->
+        <div class="col-lg-4">
+
+          <!-- Top Products -->
+          <div class="section-card mb-4">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h6 class="fw-bold mb-0">Top Products</h6>
+              <a href="/seller_products" class="btn btn-sm btn-outline-primary rounded-pill">All</a>
+            </div>
+          
+            <div class="d-flex flex-column gap-2">
+              <% if(top.length === 0)  { %>
+                <div class="status-badge">
+                  <p  style="color:var(--brand);">There are no top products</p>
+                </div>
+              <% } else { %>
+                <% for(let i = 0 ; i < top.length; i++){ %>
+                  <div class="product-mini d-flex align-items-center  flex-wrap flex-lg-nowrap gap-3">
+                    <img src="/products/<%= top[i].image %>" style="height: 87px; width: 87px; object-fit: cover;" alt="">
+                    <div class="flex-grow-1  min-width-0">
+                      <p class="fw-semibold  mb-0 small text-truncate"><%= top[i].product %></p>
+                      <p class="text-muted mb-0" style="font-size:.76rem;"><%= top[i].sold %> Sold</p>
+                      <span class="fw-bold small" style="color:var(--brand);">$<%= top[i].price %> </span>
+                    </div>
+                  </div>
+
+                  <% } %>
+                    <% } %>
+
+
+            </div>
+          </div>
+
+          <!-- Store Alerts -->
+          <div class="section-card">
+            <h6 class="fw-bold mb-3">Alerts</h6>
+            <div class="d-flex flex-column gap-2">
+              <div class="d-flex align-items-start gap-2 p-3 rounded-3" style="background:#fef9c3;">
+                <i class="bi bi-exclamation-triangle-fill text-warning mt-1"></i>
+                <!-- <p class="mb-0 small"><strong>Low Stock:</strong></p> -->
+                 <div class="p-1 w-full d-flex gap-2 ">
+                  <div class="bg-danger text-white justify-content-center rounded-circle align-items-center d-flex" style="width: 27px; height: 27px;"><span><%= lowStock[0].total %></span></div>
+              products have low stock
+                 </div>
+              </div>
+              
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /row -->
+    </div><!-- /container -->
+
+    <%- include('../partials/footer') %>
+      <script src="/Bootstrap4/js/color-modes.js"></script>
+      <script src="/Bootstrap4/js/bootstrap.bundle.js"></script>
+      <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+</body>
+
+</html>
